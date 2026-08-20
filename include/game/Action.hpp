@@ -1,22 +1,25 @@
 #pragma once
 
-namespace poker {
+namespace poker
+{
 
-enum class ActionType {
-    Check,
-    Bet,
-    Fold,
-    Call
-};
+    enum class ActionType
+    {
+        Check,
+        Bet,
+        Call,
+        Fold
+    };
 
-class Action {
-public:
-    explicit Action(ActionType type);
+    class Action
+    {
+    public:
+        explicit Action(ActionType type);
 
-    ActionType type() const;
+        ActionType type() const;
 
-private:
-    ActionType type_;
-};
+    private:
+        ActionType type_;
+    };
 
 } // namespace poker

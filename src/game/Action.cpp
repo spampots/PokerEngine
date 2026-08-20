@@ -1,12 +1,14 @@
 #include "../../include/game/Action.hpp"
 
-namespace poker {
+namespace poker
+{
 
-Action::Action(ActionType type)
-    : type_(type) {}
+    Action::Action(ActionType type)
+        : type_(type) {}
 
-ActionType Action::type() const {
-    return type_;
-}
+    ActionType Action::type() const
+    {
+        return type_;
+    }
 
 } // namespace poker

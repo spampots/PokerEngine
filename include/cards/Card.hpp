@@ -1,21 +1,22 @@
 #pragma once
 
-namespace poker {
+namespace poker
+{
+    enum class Rank
+    {
+        Jack = 1,
+        Queen = 2,
+        King = 3
+    };
 
-enum class Rank {
-    Jack,   
-    Queen,
-    King
-};
+    class Card
+    {
+    public:
+        explicit Card(Rank rank);
 
-class Card {
-public:
-    explicit Card(Rank rank);
+        Rank rank() const;
 
-    Rank rank() const;
-
-private:
-    Rank rank_;
-};
-
+    private:
+        Rank rank_;
+    };
 } // namespace poker
