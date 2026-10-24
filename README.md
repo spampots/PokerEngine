@@ -16,6 +16,8 @@ The engine currently supports:
 - Hidden-information modeling through information sets
 - Counterfactual Regret Minimization
 - Average-strategy computation
+- Exact game-value and exploitability evaluation
+- Seedable, reproducible training
 - Unit and integration testing
 
 The architecture separates generic game state from game-specific rules and the CFR learning algorithm, making the system extensible to other imperfect-information poker variants.
@@ -31,6 +33,7 @@ poker-engine/
 │   └── poker/
 │       ├── Card.hpp
 │       ├── CFR.hpp
+│       ├── Evaluation.hpp
 │       ├── GameState.hpp
 │       ├── InformationSet.hpp
 │       └── KuhnPoker.hpp
@@ -38,6 +41,7 @@ poker-engine/
 ├── src/
 │   ├── Card.cpp
 │   ├── CFR.cpp
+│   ├── Evaluation.cpp
 │   ├── GameState.cpp
 │   ├── InformationSet.cpp
 │   └── KuhnPoker.cpp
@@ -47,7 +51,8 @@ poker-engine/
 │   ├── test_game_state.cpp
 │   ├── test_kuhn.cpp
 │   ├── test_cfr.cpp
-│   └── test_end_to_end.cpp
+│   ├── test_end_to_end.cpp
+│   └── test_evaluation.cpp
 │
-└── examples/
+└── experiments/
     └── train_kuhn.cpp

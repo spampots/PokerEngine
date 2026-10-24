@@ -9,10 +9,6 @@ namespace poker {
 
 namespace {
 
-int otherPlayer(int player) {
-    return 1 - player;
-}
-
 bool isBetAction(const Action& action) {
     return action.type == ActionType::Bet;
 }
@@ -31,31 +27,51 @@ bool isFoldAction(const Action& action) {
 
 } // namespace
 
-GameState KuhnPoker::initialState() const {
-    GameState state;
+KuhnPoker::KuhnPoker()
+    : KuhnPoker(std::random_device{}()) {}
 
+KuhnPoker::KuhnPoker(std::uint32_t seed)
+    : generator_(seed) {}
+
+std::array<Card, 3> KuhnPoker::deck() {
     /*
      * Kuhn Poker uses only J, Q and K.
      *
      * Suits are irrelevant, so all cards use Clubs.
      */
-    std::array<Card, 3> deck{
+    return {
         Card{Rank::Jack, Suit::Clubs},
         Card{Rank::Queen, Suit::Clubs},
         Card{Rank::King, Suit::Clubs}
     };
+}
 
-    std::random_device rd;
-    std::mt19937 generator(rd());
+GameState KuhnPoker::initialState() const {
+    std::array<Card, 3> cards = deck();
 
     std::shuffle(
-        deck.begin(),
-        deck.end(),
-        generator
+        cards.begin(),
+        cards.end(),
+        generator_
     );
 
-    state.setPrivateCard(0, deck[0]);
-    state.setPrivateCard(1, deck[1]);
+    return initialState(cards[0], cards[1]);
+}
+
+GameState KuhnPoker::initialState(
+    Card card0,
+    Card card1
+) const {
+    if (card0 == card1) {
+        throw std::invalid_argument(
+            "Players cannot hold the same card"
+        );
+    }
+
+    GameState state;
+
+    state.setPrivateCard(0, card0);
+    state.setPrivateCard(1, card1);
 
     /*
      * Each player antes one chip.

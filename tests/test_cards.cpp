@@ -22,17 +22,17 @@ TEST(CardTest, CardsCompareCorrectly) {
 
 TEST(CardTest, ToStringWorks) {
     EXPECT_EQ(
-        Card{Rank::King, Suit::Spades}.toString(),
+        Card(Rank::King, Suit::Spades).toString(),
         "KS"
     );
 
     EXPECT_EQ(
-        Card{Rank::Queen, Suit::Hearts}.toString(),
+        Card(Rank::Queen, Suit::Hearts).toString(),
         "QH"
     );
 
     EXPECT_EQ(
-        Card{Rank::Jack, Suit::Clubs}.toString(),
+        Card(Rank::Jack, Suit::Clubs).toString(),
         "JC"
     );
 }

@@ -42,6 +42,7 @@ add_library(
     src/InformationSet.cpp
     src/KuhnPoker.cpp
     src/CFR.cpp
+    src/Evaluation.cpp
 )
 
 target_include_directories(
@@ -56,7 +57,7 @@ target_include_directories(
 
 add_executable(
     train_kuhn
-    examples/train_kuhn.cpp
+    experiments/train_kuhn.cpp
 )
 
 target_link_libraries(
@@ -106,6 +107,7 @@ if(BUILD_TESTING)
         tests/test_kuhn.cpp
         tests/test_cfr.cpp
         tests/test_end_to_end.cpp
+        tests/test_evaluation.cpp
     )
 
     target_link_libraries(

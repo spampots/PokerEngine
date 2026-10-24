@@ -53,8 +53,6 @@ TEST(EndToEndTest, LearnedStrategiesAreNormalized) {
 }
 
 TEST(EndToEndTest, InformationSetsHideOpponentCard) {
-    KuhnPoker game;
-
     GameState stateA;
 
     stateA.setPrivateCard(
